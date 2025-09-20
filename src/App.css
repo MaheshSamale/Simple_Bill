@@ -24,6 +24,9 @@ body {
   padding: 1.5rem;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   margin-bottom: 6rem;
+  max-height: calc(100vh - 8rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .app-title {
@@ -67,19 +70,22 @@ select {
 }
 
 .add-btn {
-  display: inline-flex;               /* Align icon nicely with text if needed */
-  align-items: center;                /* Center vertically */
-  justify-content: center;            /* Center horizontally */            /* Rounded corners */    /* Transparent border */
-  padding: 0.3em 0.8em;               /* Padding for comfortable tap area */
-  font-size: 1em;                      /* Font weight */
-  font-family: inherit;                /* Inherit font */         /* Orange background */                   /* Icon/text color */
-  cursor: pointer;                     /* Pointer on hover *//* Smooth hover */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e7ff;
+  border: 1px solid #c3dafe;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
 }
 
 
 .add-btn svg {
-  display: block;                       /* Fix icon spacing */
-  margin: 0;                            /* No extra margin */
+  display: block;
+  margin: 0;
 }
 
 

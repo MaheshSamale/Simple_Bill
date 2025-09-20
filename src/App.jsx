@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Trash2, ShoppingBag } from 'lucide-react';
+import { Trash2, ShoppingCart } from 'lucide-react';
 import './App.css';
 
 const App = () => {
@@ -150,9 +150,8 @@ const App = () => {
                 onChange={(e) => setSelectedPrice(e.target.value)}
               />
               <button type="button" className="add-btn" onClick={handleAddItem}>
-              <ShoppingBag color="#04348c" /> 
+                <ShoppingCart color="#04348c" />
               </button>
-
             </div>
           </div>
 
