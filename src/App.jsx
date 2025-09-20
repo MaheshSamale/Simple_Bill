@@ -163,7 +163,7 @@ const App = () => {
                 {items.map((item, index) => (
                   <li key={index}>
                     <span>
-                      {item.name} - ₹{item.price}
+                      {item.name} - - -  ₹{item.price}
                     </span>
                     <button type="button" onClick={() => handleRemoveItem(index)}>
                       <Trash2 size={16} />

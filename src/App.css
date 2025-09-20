@@ -89,20 +89,33 @@ select {
 }
 
 
-
-.bill-section ul {
-  list-style: none;
-}
 .bill-section li {
   display: flex;
   justify-content: space-between;
+  align-items: center; /* This centers the items vertically */
   padding: 0.5rem 0;
-  border-bottom: 1px dashed #ddd;
+  border-bottom: 1px dashed red;
+  flex-wrap: wrap; /* Allows the content to wrap to the next line if space is limited */
 }
+.bill-section h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #04348c;
+  margin-bottom: 0.5rem;
+}
+
+.bill-section li span {
+  color: #04348c;
+  font-weight: 700;
+  flex-grow: 1; /* Allows the span to take up available space */
+  margin-right: 0.5rem; /* Adds some space between the text and the button */
+}
+
 .bill-section button {
   background: none;
   border: none;
   color: red;
+  flex-shrink: 0; /* Prevents the button from shrinking */
 }
 
 .sticky-footer {
