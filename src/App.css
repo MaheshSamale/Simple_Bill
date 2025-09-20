@@ -1,133 +1,17 @@
-/* Base & container */
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-body { background-color: #f0f4ff; }
-
-.app-container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
 }
-
-.app-card {
-  width: 100%;
-  max-width: 500px;
-  background: #fff;
-  border-radius: 1.5rem;
-  padding: 2rem;
-  box-shadow: 0 15px 25px rgba(0,0,0,0.15);
-  transition: 0.3s;
+body {
+  background-color: #f0f4ff;
 }
-
-.app-card:hover {
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-}
-
-.app-title {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #04348c;
-  margin-bottom: 1.5rem;
-}
-
-/* Form */
-.app-form .section { margin-bottom: 1.5rem; }
-.app-form .section h2 {
-  font-size: 1.2rem;
-  color: #04348c;
-  margin-bottom: 0.75rem;
-  border-bottom: 2px solid #dbeafe;
-  padding-bottom: 0.5rem;
-}
-
-/* Inputs & select */
-.app-form input, .app-form select {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
-.app-form input:focus, .app-form select:focus {
-  outline: none;
-  border-color: #04348c;
-  box-shadow: 0 0 0 2px rgba(4, 52, 140, 0.2);
-}
-
-/* Item rows */
-.item-row {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.item-row select { flex-grow: 1; }
-.item-row input[type="number"] { flex-shrink: 0; width: 180px; }
-
-/* Buttons */
-.add-btn, .submit-btn, .whatsapp-link {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
-  font-weight: 600;
-  background-color: #04348c;
-  color: #fff;
-  border: none;
-  border-radius: 0.75rem;
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  transition: 0.3s;
-}
-
-.add-btn:hover, .submit-btn:hover, .whatsapp-link:hover { background-color: #032b70; }
-
-.remove-btn {
-  padding: 0.4rem;
-  color: #dc2626;
-  display: flex;
-  align-items: left;
-  justify-content: center;
-}
-
-.remove-btn:hover { color: #b91c1c; }
-
-/* Total row */
-.total-row {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 700;
-  font-size: 1.2rem;
-  margin-top: 0.75rem;
-  border-top: 2px dashed #cbd5e1;
-  padding-top: 0.5rem;
-}
-
-/* Status */
-.status-section { margin-top: 1rem; text-align: center; }
-.status-msg { display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
-.status-msg.success { color: #16a34a; }
-.status-msg.error { color: #dc2626; }
-
-.whatsapp-link {
-  margin-top: 1rem;
-  text-decoration: none;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-body { background-color: #f0f4ff; }
 
 .app-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   padding: 1rem;
 }
@@ -137,9 +21,9 @@ body { background-color: #f0f4ff; }
   max-width: 500px;
   background: #fff;
   border-radius: 1.5rem;
-  padding: 2rem;
-  box-shadow: 0 15px 25px rgba(0,0,0,0.15);
-  margin-bottom: 5rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 6rem;
 }
 
 .app-title {
@@ -147,19 +31,21 @@ body { background-color: #f0f4ff; }
   font-size: 2rem;
   font-weight: 700;
   color: #04348c;
+  margin-bottom: 1rem;
+}
+
+.section {
   margin-bottom: 1.5rem;
 }
-
-.app-form .section { margin-bottom: 1.5rem; }
-.app-form .section h2 {
-  font-size: 1.2rem;
+.section h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #04348c;
-  margin-bottom: 0.75rem;
-  border-bottom: 2px solid #dbeafe;
-  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.app-form input, .app-form select {
+input,
+select {
   width: 100%;
   padding: 0.75rem;
   font-size: 1rem;
@@ -168,52 +54,51 @@ body { background-color: #f0f4ff; }
   margin-bottom: 0.75rem;
 }
 
-.app-form input:focus, .app-form select:focus {
-  outline: none;
-  border-color: #04348c;
-  box-shadow: 0 0 0 2px rgba(4, 52, 140, 0.2);
-}
-
-.item-row {
+.single-input-row {
   display: flex;
-  align-items: center;
   gap: 0.5rem;
-  flex-wrap: wrap;
 }
 
-.item-row select { flex-grow: 1; }
-.item-row input[type="number"] { width: 100px; flex-shrink: 0; }
+.single-input-row select {
+  flex: 1;
+}
+.single-input-row input {
+  width: 90px;
+}
 
 .add-btn {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
-  font-weight: 600;
-  background-color: #04348c;
-  color: #fff;
+  display: inline-flex;               /* Align icon nicely with text if needed */
+  align-items: center;                /* Center vertically */
+  justify-content: center;            /* Center horizontally */            /* Rounded corners */    /* Transparent border */
+  padding: 0.3em 0.8em;               /* Padding for comfortable tap area */
+  font-size: 1em;                      /* Font weight */
+  font-family: inherit;                /* Inherit font */         /* Orange background */                   /* Icon/text color */
+  cursor: pointer;                     /* Pointer on hover *//* Smooth hover */
+}
+
+
+.add-btn svg {
+  display: block;                       /* Fix icon spacing */
+  margin: 0;                            /* No extra margin */
+}
+
+
+
+.bill-section ul {
+  list-style: none;
+}
+.bill-section li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed #ddd;
+}
+.bill-section button {
+  background: none;
   border: none;
-  border-radius: 0.75rem;
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  transition: 0.3s;
+  color: red;
 }
 
-.add-btn:hover { background-color: #032b70; }
-
-.remove-btn {
-  padding: 0.2rem;
-  color: #dc2626;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.remove-btn:hover { color: #b91c1c; }
-
-/* Sticky footer */
 .sticky-footer {
   position: fixed;
   bottom: 0;
@@ -222,7 +107,7 @@ body { background-color: #f0f4ff; }
   max-width: 500px;
   background: #fff;
   padding: 0.75rem 1rem;
-  box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -247,8 +132,7 @@ body { background-color: #f0f4ff; }
   color: #fff;
   border: none;
   border-radius: 0.75rem;
-  transition: 0.3s;
 }
-
-.submit-btn:hover { background-color: #032b70; }
-.submit-btn:disabled { background-color: #a1a1aa; cursor: not-allowed; }
+.submit-btn:disabled {
+  background-color: #aaa;
+}

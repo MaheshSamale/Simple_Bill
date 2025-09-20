@@ -1,46 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import { MinusCircle, PlusCircle } from 'lucide-react';
+import { Trash2, ShoppingBag } from 'lucide-react';
 import './App.css';
 
 const App = () => {
   const [customerName, setCustomerName] = useState('');
   const [whatsappNumber, setWhatsappNumber] = useState('');
-  const [items, setItems] = useState([{ name: '', price: '' }]);
+  const [selectedItem, setSelectedItem] = useState('');
+  const [selectedPrice, setSelectedPrice] = useState('');
+  const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby1YYSdt9iwLpGu08LQyHQfybV-VcGmHQSLPyYP9wZyA6VhWcmfPdcFDu835aXnCfkA/exec';
+  const SCRIPT_URL =
+    'https://script.google.com/macros/s/AKfycby1YYSdt9iwLpGu08LQyHQfybV-VcGmHQSLPyYP9wZyA6VhWcmfPdcFDu835aXnCfkA/exec';
 
   const defaultItems = [
-    { name: 'Item 1', price: 100 },
-    { name: 'Item 2', price: 150 },
-    { name: 'Item 3', price: 200 },
-    { name: 'Item 4', price: 250 },
-    { name: 'Item 5', price: 300 },
-    { name: 'Item 6', price: 350 },
-    { name: 'Item 7', price: 400 },
-    { name: 'Item 8', price: 450 },
+    { name: 'Dress', price: 0 },
+    { name: 'Top', price: 0 },
+    { name: 'lagins', price: 0 },
+    { name: 'Plazzo', price: 0 },
+    { name: 'Bag', price: 0 },
+    { name: 'Chunri', price: 0 },
+    { name: 'Jens', price: 0 },
+    { name: 'Other', price: 0 },
   ];
 
-  const handleAddItem = () => setItems([...items, { name: '', price: '' }]);
-  const handleRemoveItem = (index) => setItems(items.filter((_, i) => i !== index));
+  const handleSelectChange = (e) => {
+    const value = e.target.value;
+    setSelectedItem(value);
+    const found = defaultItems.find((i) => i.name === value);
+    setSelectedPrice(found ? found.price : '');
+  };
 
-  const handleItemChange = (index, event) => {
-    const { name, value } = event.target;
-    const newItems = [...items];
-    newItems[index][name] = value;
+  const handleAddItem = () => {
+    if (!selectedItem || !selectedPrice) return;
 
-    if (name === 'name') {
-      const selectedItem = defaultItems.find((i) => i.name === value);
-      if (selectedItem) newItems[index].price = selectedItem.price;
-      else newItems[index].price = '';
-    }
+    setItems((prev) => [...prev, { name: selectedItem, price: selectedPrice }]);
+    setSelectedItem('');
+    setSelectedPrice('');
+  };
 
-    setItems(newItems);
+  const handleRemoveItem = (index) => {
+    setItems(items.filter((_, i) => i !== index));
   };
 
   useEffect(() => {
-    const newTotal = items.reduce((sum, item) => sum + (isNaN(parseFloat(item.price)) ? 0 : parseFloat(item.price)), 0);
+    const newTotal = items.reduce(
+      (sum, item) => sum + (isNaN(parseFloat(item.price)) ? 0 : parseFloat(item.price)),
+      0
+    );
     setTotal(newTotal);
   }, [items]);
 
@@ -68,6 +76,12 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (items.length === 0) {
+      alert('Please add at least one item before generating the bill.');
+      return;
+    }
+
     setIsSubmitting(true);
 
     const formattedNumber = `91${whatsappNumber}`;
@@ -83,7 +97,6 @@ const App = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-      // Redirect to WhatsApp after submission
       window.open(whatsappLink, '_blank');
     } catch (error) {
       console.error('Error sending data:', error);
@@ -97,6 +110,7 @@ const App = () => {
     <div className="app-container">
       <div className="app-card">
         <h1 className="app-title">Yogesh Mundhe</h1>
+
         <form onSubmit={handleSubmit} className="app-form">
           {/* Customer Info */}
           <div className="section">
@@ -117,45 +131,53 @@ const App = () => {
             />
           </div>
 
-          {/* Items */}
+          {/* Single Input Row */}
           <div className="section">
-            <h2>Items</h2>
-            {items.map((item, index) => (
-              <div className="item-row" key={index}>
-                <select
-                  name="name"
-                  value={item.name}
-                  onChange={(e) => handleItemChange(index, e)}
-                  required
-                >
-                  <option value="">Select Item</option>
-                  {defaultItems.map((dItem, idx) => (
-                    <option key={idx} value={dItem.name}>
-                      {dItem.name}
-                    </option>
-                  ))}
-                </select>
-                <input
-                  type="number"
-                  name="price"
-                  placeholder="Price"
-                  value={item.price}
-                  onChange={(e) => handleItemChange(index, e)}
-                  required
-                />
-                <button type="button" onClick={() => handleRemoveItem(index)} className="remove-btn">
-                  <MinusCircle size={18} />
-                </button>
-              </div>
-            ))}
-            <button type="button" className="add-btn" onClick={handleAddItem}>
-              <PlusCircle size={20} /> Add Item
-            </button>
+            <h2>Add Item</h2>
+            <div className="single-input-row">
+              <select value={selectedItem} onChange={handleSelectChange}>
+                <option value="">Select Item</option>
+                {defaultItems.map((dItem, idx) => (
+                  <option key={idx} value={dItem.name}>
+                    {dItem.name}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="number"
+                placeholder="Price"
+                value={selectedPrice}
+                onChange={(e) => setSelectedPrice(e.target.value)}
+              />
+              <button type="button" className="add-btn" onClick={handleAddItem}>
+              <ShoppingBag color="#04348c" /> 
+              </button>
+
+            </div>
           </div>
+
+          {/* Bill Preview Section */}
+          {items.length > 0 && (
+            <div className="bill-section">
+              <h2>Bill</h2>
+              <ul>
+                {items.map((item, index) => (
+                  <li key={index}>
+                    <span>
+                      {item.name} - ₹{item.price}
+                    </span>
+                    <button type="button" onClick={() => handleRemoveItem(index)}>
+                      <Trash2 size={16} />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </form>
       </div>
 
-      {/* Sticky Total & Submit Button */}
+      {/* Sticky Footer */}
       <div className="sticky-footer">
         <div className="total-row">
           <span>Total</span>
