@@ -12,9 +12,12 @@ const App = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycby1YYSdt9iwLpGu08LQyHQfybV-VcGmHQSLPyYP9wZyA6VhWcmfPdcFDu835aXnCfkA/exec';
+    'https://script.google.com/macros/s/AKfycbzG4EoF6bgsVWDoBW-DbmOO9-LkBCZj8zWi90lgGRYu3HHe1JYGmvZYsE5XM9665jcDZQ/exec';
 
-  const defaultItems = [
+ 
+ // Change this Names According to YOU as you want and you can add more names also 
+ 
+    const defaultItems = [
     { name: 'Dress', price: 0 },
     { name: 'Top', price: 0 },
     { name: 'lagins', price: 0 },
@@ -69,7 +72,7 @@ const App = () => {
     });
     message += `Total: ₹${total.toFixed(2)}\n`;
     message += `-------------------------\n`;
-    message += `Thank you for your purchase!\nVisit Again!\n\n- Yogesh Mundhe`;
+    message += `Thank you for your purchase!\nVisit Again!\n\n- हॉटेल चेअरमन`;
 
     return encodeURIComponent(message);
   };
@@ -109,7 +112,7 @@ const App = () => {
   return (
     <div className="app-container">
       <div className="app-card">
-        <h1 className="app-title">Yogesh Mundhe</h1>
+        <h1 className="app-title">हॉटेल चेअरमन</h1>
 
         <form onSubmit={handleSubmit} className="app-form">
           {/* Customer Info */}
